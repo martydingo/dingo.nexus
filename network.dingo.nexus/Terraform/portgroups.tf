@@ -6,6 +6,7 @@ resource "vsphere_host_port_group" "portGroup-FE" {
 
 data "vsphere_network" "portGroup-FE" {
   name          = "portGroup-FE"
+  datacenter_id = data.vsphere_datacenter.vsphere-dingo-nexus.id
 }
 
 resource "vsphere_host_port_group" "portGroup-RTRNET" {
@@ -16,6 +17,7 @@ resource "vsphere_host_port_group" "portGroup-RTRNET" {
 
 data "vsphere_network" "portGroup-RTRNET" {
   name          = "portGroup-RTRNET"
+  datacenter_id = data.vsphere_datacenter.vsphere-dingo-nexus.id
 }
 
 resource "vsphere_host_port_group" "portGroup-BE" {
@@ -26,6 +28,7 @@ resource "vsphere_host_port_group" "portGroup-BE" {
 
 data "vsphere_network" "portGroup-BE" {
   name          = "portGroup-BE"
+  datacenter_id = data.vsphere_datacenter.vsphere-dingo-nexus.id
 }
 
 resource "vsphere_host_port_group" "portGroup-SAN" {
@@ -36,4 +39,5 @@ resource "vsphere_host_port_group" "portGroup-SAN" {
 
 data "vsphere_network" "portGroup-SAN" {
   name          = "portGroup-SAN"
+  datacenter_id = data.vsphere_datacenter.vsphere-dingo-nexus.id
 }
