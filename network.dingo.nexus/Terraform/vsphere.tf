@@ -1,20 +1,20 @@
 variable "vsphere_server" {
-  type = string
+  type      = string
   sensitive = true
 }
 
 variable "vsphere_user" {
-  type = string
+  type      = string
   sensitive = true
 }
 
 variable "vsphere_password" {
-  type = string
+  type      = string
   sensitive = true
 }
 
 variable "vsphere_datastore" {
-  type = string
+  type      = string
   sensitive = false
 }
 
@@ -32,7 +32,7 @@ data "vsphere_host" "esxi-vsphere-dingo-nexus" {
 }
 
 data "vsphere_datastore" "storage-vsphere-dingo-nexus" {
-  name = var.vsphere_datastore
+  name          = var.vsphere_datastore
   datacenter_id = data.vsphere_datacenter.vsphere-dingo-nexus.id
 }
 
