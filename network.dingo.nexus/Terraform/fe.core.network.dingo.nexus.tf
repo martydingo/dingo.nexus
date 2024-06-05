@@ -5,13 +5,6 @@ variable "public_ip_map" {
   }))
 }
 
-# resource "vsphere_virtual_disk" "fe-core-network-dingo-nexus" {
-#   create_directories = true
-#   datastore     = data.vsphere_datastore.storage-vsphere-dingo-nexus.name
-#   size               = 1
-#   vmdk_path          = "/fe.core.network.dingo.nexus/fe.core.network.dingo.nexus.vmdk"
-# }
-
 resource "vsphere_virtual_machine" "fe-core-network-dingo-nexus" {
   name                       = "fe.core.network.dingo.nexus"
   resource_pool_id           = data.vsphere_resource_pool.pool-vsphere-dingo-nexus.id
@@ -21,7 +14,7 @@ resource "vsphere_virtual_machine" "fe-core-network-dingo-nexus" {
   wait_for_guest_net_timeout = 0
   wait_for_guest_ip_timeout  = 0
   guest_id                   = "otherGuest64"
-  alternate_guest_name       = "Mikrotik CHR v7"
+  alternate_guest_name       = "Mikrotik CHR"
 
   dynamic "network_interface" {
     for_each = var.public_ip_map
@@ -35,8 +28,7 @@ resource "vsphere_virtual_machine" "fe-core-network-dingo-nexus" {
   }
 
   disk {
-    label = "fe.core.network.dingo.nexus"
-    # size  = 1
+    label        = "fe.core.network.dingo.nexus"
     path         = "/fe.core.network.dingo.nexus/fe.core.network.dingo.nexus.vmdk"
     datastore_id = data.vsphere_datastore.storage-vsphere-dingo-nexus.id
     attach       = true
