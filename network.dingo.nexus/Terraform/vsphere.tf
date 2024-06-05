@@ -1,3 +1,23 @@
+variable "vsphere_server" {
+  type = string
+  sensitive = true
+}
+
+variable "vsphere_user" {
+  type = string
+  sensitive = true
+}
+
+variable "vsphere_password" {
+  type = string
+  sensitive = true
+}
+
+variable "vsphere_datastore" {
+  type = string
+  sensitive = false
+}
+
 provider "vsphere" {
   user                 = var.vsphere_user
   password             = var.vsphere_password
@@ -12,6 +32,7 @@ data "vsphere_host" "esxi-vsphere-dingo-nexus" {
 }
 
 data "vsphere_datastore" "storage-vsphere-dingo-nexus" {
+  name = var.vsphere_datastore
   datacenter_id = data.vsphere_datacenter.vsphere-dingo-nexus.id
 }
 
