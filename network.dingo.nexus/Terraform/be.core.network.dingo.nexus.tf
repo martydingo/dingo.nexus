@@ -7,7 +7,7 @@ resource "vsphere_virtual_machine" "be-core-network-dingo-nexus" {
   wait_for_guest_net_timeout = 0
   wait_for_guest_ip_timeout  = 0
   guest_id                   = "otherGuest64"
-  alternate_guest_name       = "Mikrotik CHR"
+  alternate_guest_name       = "Mikrotik Cloud Hosted Router"
 
   network_interface {
     network_id = data.vsphere_network.portGroup-RTRNET.id
