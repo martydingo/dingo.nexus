@@ -19,8 +19,9 @@ resource "vsphere_virtual_machine" "fe-core-network-dingo-nexus" {
   dynamic "network_interface" {
     for_each = var.public_ip_map
     content {
-      network_id  = data.vsphere_network.portGroup-FE.id
-      mac_address = network_interface.value["mac"]
+      network_id     = data.vsphere_network.portGroup-FE.id
+      use_static_mac = true
+      mac_address    = network_interface.value["mac"]
     }
   }
   network_interface {
