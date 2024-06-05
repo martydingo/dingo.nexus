@@ -7,6 +7,9 @@ resource "vsphere_host_port_group" "portGroup-FE" {
 data "vsphere_network" "portGroup-FE" {
   name          = "portGroup-FE"
   datacenter_id = data.vsphere_datacenter.vsphere-dingo-nexus.id
+  depends_on = [
+    resource.vsphere_host_port_group.portGroup-FE
+  ]
 }
 
 resource "vsphere_host_port_group" "portGroup-RTRNET" {
